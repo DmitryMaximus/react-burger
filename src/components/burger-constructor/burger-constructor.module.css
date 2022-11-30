@@ -1,0 +1,20 @@
+.price {
+    display: flex;
+    align-items: center;
+}
+
+.constructor {
+    width: 600px;
+}
+
+.order {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+.fillingItem {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}

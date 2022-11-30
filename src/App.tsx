@@ -1,26 +1,56 @@
-import React from 'react';
-import logo from './logo.svg';
+import React, {useState} from 'react';
 import './App.css';
+import AppHeader from "./components/app-header/app-header";
+import BurgerConstructor from "./components/burger-constructor/burger-constructor";
+import BurgerIngredients from "./components/burger-ingredients/burger-ingredients";
+import {data} from "./utils/data";
+
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+
+    const [burger, setBurger] = useState<{
+        top: any,
+        filling: any,
+        bottom: any
+    }>(
+        {
+            top: null,
+            filling: [],
+            bottom: null
+        }
+    )
+
+    const handleAddBun = (id: string) => {
+        const item = data.find(x => x["_id"] === id);
+        if (burger.bottom === null) {
+            setBurger({...burger, bottom: item})
+            return
+        }
+        if (burger.top === null) {
+            setBurger({...burger, top: item})
+            return
+        }
+        if (burger.top != null && burger.bottom != null) {
+            setBurger({...burger, bottom: item, top: burger.bottom})
+        }
+    }
+
+    const handleAddInner = (id: string) => {
+        const item = {...data.find(x => x["_id"] === id)};
+        const fillingList = [...burger.filling]
+        fillingList.push(item)
+        setBurger({...burger, filling: fillingList})
+    }
+
+    return (
+        <div className="App">
+            <AppHeader/>
+            <div style={{display: "flex"}}>
+                <BurgerIngredients handleAddInner={handleAddInner} handleAddBun={handleAddBun}/>
+                <BurgerConstructor burger={burger}/>
+            </div>
+        </div>
+    );
 }
 
 export default App;

@@ -1,0 +1,21 @@
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #1C1C21;
+
+
+}
+
+.link {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-radius: 20px;
+}
+
+.links {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
