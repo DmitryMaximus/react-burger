@@ -1,0 +1,28 @@
+.detail {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.details {
+    display: flex;
+    justify-content: center;
+}
+
+.ingredientDetails {
+    width: 520px;
+}
+
+.imageWrapper {
+    display: flex;
+    justify-content: center;
+}
+
+.image {
+    width: 480px;
+    height: 100%;
+}
+
+.name {
+    text-align: center;
+}
