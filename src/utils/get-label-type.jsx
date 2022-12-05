@@ -6,5 +6,7 @@ export function getTypeLabel(type) {
             return "Начинки"
         case "sauce":
             return "Соусы"
+        default:
+            return type
     }
 }

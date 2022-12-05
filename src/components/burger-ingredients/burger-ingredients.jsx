@@ -3,39 +3,56 @@ import {CurrencyIcon, Tab} from "@ya.praktikum/react-developer-burger-ui-compone
 import {getTypeLabel} from "../../utils/get-label-type";
 import PropTypes from "prop-types";
 import {ingredientType} from "../../utils/ingredient-type";
-
+import {createRef, useEffect, useState} from "react";
+import React from "react";
 
 
 
 const BurgerIngredients = ({ data, handleClick }) => {
 
+    const types = [...new Set(data.map(x => x.type))]
+
+    const parsedData = types.map(x => ({
+        name: x,
+        ref: createRef(),
+        values: data.filter(z => z.type === x)
+    }))
+
+
+    const [activeTab, setActiveTab] = useState(null)
+
+    useEffect(() => {
+        if (parsedData[0] && parsedData[0].name) setActiveTab(parsedData[0].name)
+    }, [data])
+
+    const handleTabClick = (event) => {
+        setActiveTab(event)
+        parsedData.find(x => x.name === event).ref.current?.scrollIntoView({behavior: "smooth"})
+    }
 
     return (
         <div className={`mr-5 pt-10 ${styles.ingredients}`}>
             <p style={{display: "flex"}} className="text text_type_main-large">Соберите бургер</p>
-            {/*табы*/}
             <div className={'mt-5'} style={{display: 'flex'}}>
-                <Tab value="Булки" active={true}>
-                    Булки
-                </Tab>
-                <Tab value="Соусы" active={false}>
-                    Соусы
-                </Tab>
-                <Tab value="Начинки" active={false}>
-                    Начинки
-                </Tab>
+                {
+                    parsedData.map(x => x.name).map((z, index) =>
+                        <Tab key={index} value={z} active={activeTab === z} onClick={handleTabClick}>
+                            {getTypeLabel(z)}
+                        </Tab>
+                    )
+                }
             </div>
             <div className={`${styles.list} pl-4 pr-4`}>
                 <div className={`${styles.setListWrapper} pt-10`}>
                     {
-                        [...new Set(data.map(x => x.type))].map((x, index) =>
+                        parsedData.map((x, index) =>
                             <div key={index} className={styles.setList}>
-                                <p className={"text text_type_main-medium"}
-                                   style={{display: "flex"}}>{getTypeLabel(x)}</p>
+                                <p ref={x.ref} className={"text text_type_main-medium"}
+                                   style={{display: "flex"}}>{getTypeLabel(x.name)} </p>
                                 <div className={`${styles.items} pt-6`}>
-                                    {data.filter(z => z.type === x).map((i, index) =>
+                                    {x.values.map((i, index) =>
                                         <div key={index}
-                                            onClick={() => handleClick(i["_id"])}
+                                             onClick={() => handleClick(i["_id"])}
                                              className={`${styles.item} pl-4 pr-4 mt-6 ${index % 2 === 0 ? "mr-3" : "ml-3"}`}>
                                             <img src={i.image} alt={'ingredient'}/>
                                             <div className={`${styles.price} mt-1 mb-1`}>
