@@ -10,10 +10,11 @@
     align-items: center;
 }
 
-.button {
+.active {
     color: white;
     display: flex;
     align-items: center;
+    text-decoration: none;
 }
 
 .inActive {

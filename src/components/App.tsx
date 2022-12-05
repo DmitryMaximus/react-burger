@@ -1,11 +1,11 @@
 import React, {useEffect, useState} from 'react';
 import './App.css';
-import AppHeader from "./components/app-header/app-header";
-import BurgerIngredients from "./components/burger-ingredients/burger-ingredients";
-import BurgerConstructor from "./components/burger-constructor/burger-constructor";
-import Modal from "./components/modal/modal";
-import IngredientDetails from "./components/modal/ingredient-details";
-import OrderDetails from "./components/modal/order-details";
+import AppHeader from "./app-header/app-header";
+import BurgerIngredients from "./burger-ingredients/burger-ingredients";
+import BurgerConstructor from "./burger-constructor/burger-constructor";
+import Modal from "./modal/modal";
+import IngredientDetails from "./modal/ingredient-details";
+import OrderDetails from "./modal/order-details";
 
 
 function App() {
