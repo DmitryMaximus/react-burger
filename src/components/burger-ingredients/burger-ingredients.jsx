@@ -37,13 +37,13 @@ const BurgerIngredients = ({ data, handleClick }) => {
             <div className={`${styles.list} pl-4 pr-4`}>
                 <div className={`${styles.setListWrapper} pt-10`}>
                     {
-                        [...new Set(data.map(x => x.type))].map(x =>
-                            <div className={styles.setList}>
+                        [...new Set(data.map(x => x.type))].map((x, index) =>
+                            <div key={index} className={styles.setList}>
                                 <p className={"text text_type_main-medium"}
                                    style={{display: "flex"}}>{getTypeLabel(x)}</p>
                                 <div className={`${styles.items} pt-6`}>
                                     {data.filter(z => z.type === x).map((i, index) =>
-                                        <div
+                                        <div key={index}
                                             onClick={() => handleClick(i["_id"])}
                                              className={`${styles.item} pl-4 pr-4 mt-6 ${index % 2 === 0 ? "mr-3" : "ml-3"}`}>
                                             <img src={i.image}/>
