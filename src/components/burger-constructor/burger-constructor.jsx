@@ -15,7 +15,7 @@ const BurgerConstructor = ({ burger, handleClick }) => {
                 <span className={styles.hiddenDrag}>
                     <DragIcon type={'primary'}/>
                 </span>
-                <ConstructorElement extraClass={`pt-4 pb-4`} text={burger.top.name} thumbnail={burger.top.image} isLocked={true} price={burger.top.price} type={'top'}/>
+                <ConstructorElement extraClass={`pt-4 pb-4`} text={`${burger.top.name} (низ)`} thumbnail={burger.top.image} isLocked={true} price={burger.top.price} type={'top'}/>
             </div>
             <div className={styles.ingredients}>
                 {
@@ -31,7 +31,7 @@ const BurgerConstructor = ({ burger, handleClick }) => {
                 <span className={styles.hiddenDrag}>
                     <DragIcon type={'primary'}/>
                 </span>
-                <ConstructorElement extraClass={`pt-4 pb-4`} text={burger.bottom.name} thumbnail={burger.bottom.image} isLocked={true} price={burger.bottom.price} type={'bottom'}/>
+                <ConstructorElement extraClass={`pt-4 pb-4`} text={`${burger.bottom.name} (низ)`} thumbnail={burger.bottom.image} isLocked={true} price={burger.bottom.price} type={'bottom'}/>
             </div>
             <div className={`${styles.order} mt-10`}>
                 <div className={`${styles.price} mr-10`}>
