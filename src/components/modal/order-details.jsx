@@ -11,7 +11,7 @@ const OrderDetails = () => {
                 <div className={styles.check}>
                     <CheckMarkIcon type={'secondary'} />
                 </div>
-                <img alt={'tick'} src={image}/>
+                <img alt={'tick'} src={image} width={100} height={100}/>
             </div>
             <p className={`text text_type_main-default ${styles.center}`}>Ваш заказ начали готовить</p>
             <p className={`mt-2 text text_type_main-default text_color_inactive ${styles.center}`}>Дождитесь готовности на орбитальной станции</p>
