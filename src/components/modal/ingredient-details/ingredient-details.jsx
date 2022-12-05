@@ -4,7 +4,7 @@ const IngredientDetails = ({ item }) => {
     return (
         <div className={styles.ingredientDetails}>
            <div className={styles.imageWrapper}>
-               <img className={styles.image} src={item.image}/>
+               <img className={styles.image} src={item.image} alt={'ingredient'}/>
            </div>
             <p className={`mt-4 text text_type_main-medium ${styles.name}`}>{item.name}</p>
             <div className={`mt-8 ${styles.details} `}>

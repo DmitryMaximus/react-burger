@@ -1,5 +1,8 @@
 import styles from "./burger-constructor.module.css"
 import {Button, ConstructorElement, CurrencyIcon, DragIcon} from "@ya.praktikum/react-developer-burger-ui-components";
+import {ingredientType} from "../../utils/ingredient-type";
+import * as propTypes from "prop-types";
+import PropTypes from "prop-types";
 
 const BurgerConstructor = ({ burger, handleClick }) => {
 
@@ -44,5 +47,14 @@ const BurgerConstructor = ({ burger, handleClick }) => {
     )
 }
 
+BurgerConstructor.propTypes = {
+    burger: propTypes.shape({
+        top: propTypes.shape({...ingredientType }),
+        ingredients: propTypes.arrayOf(propTypes.shape({...ingredientType })),
+        bottom: propTypes.shape({...ingredientType })
+    }).isRequired,
+    handleClick: PropTypes.func.isRequired
+
+};
 
 export default BurgerConstructor;

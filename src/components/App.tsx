@@ -4,8 +4,8 @@ import AppHeader from "./app-header/app-header";
 import BurgerIngredients from "./burger-ingredients/burger-ingredients";
 import BurgerConstructor from "./burger-constructor/burger-constructor";
 import Modal from "./modal/modal";
-import IngredientDetails from "./modal/ingredient-details";
-import OrderDetails from "./modal/order-details";
+import IngredientDetails from "./modal/ingredient-details/ingredient-details";
+import OrderDetails from "./modal/order-details/order-details";
 
 
 function App() {

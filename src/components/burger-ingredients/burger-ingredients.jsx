@@ -1,23 +1,14 @@
 import styles from './burger-ingredients.module.css'
 import {CurrencyIcon, Tab} from "@ya.praktikum/react-developer-burger-ui-components";
-import Modal from "../modal/modal";
-import IngredientDetails from "../modal/ingredient-details";
-import {useState} from "react";
-import ModalOverlay from "../modal/modal-overlay";
+import {getTypeLabel} from "../../utils/get-label-type";
+import PropTypes from "prop-types";
+import {ingredientType} from "../../utils/ingredient-type";
+
+
 
 
 const BurgerIngredients = ({ data, handleClick }) => {
 
-    const getTypeLabel = (type) => {
-        switch (type) {
-            case "bun":
-                return "Булки"
-            case "main":
-                return "Начинки"
-            case "sauce":
-                return "Соусы"
-        }
-    }
 
     return (
         <div className={`mr-5 pt-10 ${styles.ingredients}`}>
@@ -46,7 +37,7 @@ const BurgerIngredients = ({ data, handleClick }) => {
                                         <div key={index}
                                             onClick={() => handleClick(i["_id"])}
                                              className={`${styles.item} pl-4 pr-4 mt-6 ${index % 2 === 0 ? "mr-3" : "ml-3"}`}>
-                                            <img src={i.image}/>
+                                            <img src={i.image} alt={'ingredient'}/>
                                             <div className={`${styles.price} mt-1 mb-1`}>
                                                 <p className={'mr-1 text text_type_digits-default'}>{i.price}</p>
                                                 <CurrencyIcon type={"primary"}/>
@@ -67,4 +58,11 @@ const BurgerIngredients = ({ data, handleClick }) => {
     )
 
 }
+
+BurgerIngredients.propTypes = {
+    data: PropTypes.arrayOf(PropTypes.shape({...ingredientType
+    })).isRequired,
+    handleClick: PropTypes.func.isRequired
+};
+
 export default BurgerIngredients;
