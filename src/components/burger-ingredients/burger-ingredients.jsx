@@ -78,7 +78,7 @@ const BurgerIngredients = ({ data, handleClick }) => {
 
 BurgerIngredients.propTypes = {
     data: PropTypes.arrayOf(PropTypes.shape({...ingredientType
-    })).isRequired,
+    }).isRequired).isRequired,
     handleClick: PropTypes.func.isRequired
 };
 

@@ -18,7 +18,7 @@ const BurgerConstructor = ({ burger, handleClick }) => {
                 <span className={styles.hiddenDrag}>
                     <DragIcon type={'primary'}/>
                 </span>
-                <ConstructorElement extraClass={`pt-4 pb-4`} text={`${burger.top.name} (низ)`} thumbnail={burger.top.image} isLocked={true} price={burger.top.price} type={'top'}/>
+                <ConstructorElement extraClass={`pt-4 pb-4`} text={`${burger.top.name} (верх)`} thumbnail={burger.top.image} isLocked={true} price={burger.top.price} type={'top'}/>
             </div>
             <div className={styles.ingredients}>
                 {
@@ -49,9 +49,9 @@ const BurgerConstructor = ({ burger, handleClick }) => {
 
 BurgerConstructor.propTypes = {
     burger: propTypes.shape({
-        top: propTypes.shape({...ingredientType }),
-        ingredients: propTypes.arrayOf(propTypes.shape({...ingredientType })),
-        bottom: propTypes.shape({...ingredientType })
+        top: propTypes.shape({...ingredientType }).isRequired,
+        ingredients: propTypes.arrayOf(propTypes.shape({...ingredientType })).isRequired,
+        bottom: propTypes.shape({...ingredientType }).isRequired
     }).isRequired,
     handleClick: PropTypes.func.isRequired
 

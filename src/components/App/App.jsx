@@ -1,11 +1,11 @@
 import React, {useEffect, useState} from 'react';
 import './App.css';
-import AppHeader from "./app-header/app-header";
-import BurgerIngredients from "./burger-ingredients/burger-ingredients";
-import BurgerConstructor from "./burger-constructor/burger-constructor";
-import Modal from "./modal/modal";
-import IngredientDetails from "./modal/ingredient-details/ingredient-details";
-import OrderDetails from "./modal/order-details/order-details";
+import AppHeader from "../app-header/app-header";
+import BurgerIngredients from "../burger-ingredients/burger-ingredients";
+import BurgerConstructor from "../burger-constructor/burger-constructor";
+import Modal from "../modal/modal";
+import IngredientDetails from "../modal/ingredient-details/ingredient-details";
+import OrderDetails from "../modal/order-details/order-details";
 
 
 function App() {
@@ -15,11 +15,11 @@ function App() {
 
     useEffect(() => {
         if (data != null) {
-            const bun = data.filter((x: any) => x.type === "bun")[Math.random()<0.5?0:1];
+            const bun = data.filter(x => x.type === "bun")[Math.random()<0.5?0:1];
             setBurger({
                 top: bun,
                 bottom: bun,
-                ingredients: data.filter((x: any) => x.type !== "bun")
+                ingredients: data.filter(x => x.type !== "bun")
             })
         }
     }, [data])
@@ -47,7 +47,7 @@ function App() {
 
     const [info, setInfo] = useState(false)
     const [ingredient, setIngredient] = useState(null)
-    const handleClick = (id: any) => {
+    const handleClick = id  => {
         setIngredient(data.find(x => x["_id"] === id) || null);
         setInfo(true)
     }
@@ -60,7 +60,7 @@ function App() {
     const [orderInfo, setOrderInfo] = useState(false)
 
     useEffect(() => {
-        function handleEscapeKey(event: KeyboardEvent) {
+        function handleEscapeKey(event) {
             if (event.code === 'Escape') {
                 handleClose();
                 handleCloseOrderInfo();
