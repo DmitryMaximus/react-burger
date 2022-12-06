@@ -15,10 +15,9 @@ function App() {
 
     useEffect(() => {
         if (data != null) {
-            const bun = data.filter(x => x.type === "bun")[Math.random()<0.5?0:1];
+            const bun = data.find(x => x.type === "bun");
             setBurger({
-                top: bun,
-                bottom: bun,
+                bun: bun,
                 ingredients: data.filter(x => x.type !== "bun")
             })
         }
@@ -39,21 +38,17 @@ function App() {
     }, [])
 
     const [burger, setBurger] = useState({
-        top: null,
+        bun: null,
         ingredients: [],
-        bottom: null
     })
 
 
-    const [info, setInfo] = useState(false)
     const [ingredient, setIngredient] = useState(null)
-    const handleClick = id  => {
+    const handleClick = id => {
         setIngredient(data.find(x => x["_id"] === id) || null);
-        setInfo(true)
     }
 
     const handleClose = () => {
-        setInfo(false)
         setIngredient(null)
     }
 
@@ -93,16 +88,20 @@ function App() {
                     <BurgerConstructor handleClick={handleOpenOrderInfo} burger={burger}/>
                 </section>
             </main>
-            <div style={{overflow: 'hidden'}}>
+            <div className='ingredient-modal'>
                 {
-                    info &&
-                    <Modal onClose={handleClose} header={'Детали ингредиента'} children={<IngredientDetails item={ingredient}/>}/>
+                    ingredient &&
+                    <Modal onClose={handleClose} header={'Детали ингредиента'}>
+                        <IngredientDetails item={ingredient}/>
+                    </Modal>
                 }
             </div>
-            <div style={{overflow: 'hidden'}}>
+            <div className='order-modal'>
                 {
                     orderInfo &&
-                    <Modal onClose={handleCloseOrderInfo} header={''} children={<OrderDetails/>}/>
+                    <Modal onClose={handleCloseOrderInfo} header={''}>
+                        <OrderDetails/>
+                    </Modal>
 
                 }
             </div>

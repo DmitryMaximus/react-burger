@@ -6,10 +6,10 @@ import PropTypes from "prop-types";
 
 const BurgerConstructor = ({ burger, handleClick }) => {
 
-    if (burger == null || burger.top == null || burger.bottom == null) return null
+    if (burger == null || burger.bun == null) return null
 
     const getSum = () => {
-        return burger.top.price + burger.bottom.price + burger.ingredients.map(x => x.price).reduce((partialSum, a) => partialSum + a, 0)
+        return burger.bun.price + burger.bun.price + burger.ingredients.map(x => x.price).reduce((partialSum, a) => partialSum + a, 0)
     }
 
     return (
@@ -18,7 +18,7 @@ const BurgerConstructor = ({ burger, handleClick }) => {
                 <span className={styles.hiddenDrag}>
                     <DragIcon type={'primary'}/>
                 </span>
-                <ConstructorElement extraClass={`pt-4 pb-4`} text={`${burger.top.name} (верх)`} thumbnail={burger.top.image} isLocked={true} price={burger.top.price} type={'top'}/>
+                <ConstructorElement extraClass={`pt-4 pb-4`} text={`${burger.bun.name} (верх)`} thumbnail={burger.bun.image} isLocked={true} price={burger.bun.price} type={'top'}/>
             </div>
             <div className={styles.ingredients}>
                 {
@@ -34,7 +34,7 @@ const BurgerConstructor = ({ burger, handleClick }) => {
                 <span className={styles.hiddenDrag}>
                     <DragIcon type={'primary'}/>
                 </span>
-                <ConstructorElement extraClass={`pt-4 pb-4`} text={`${burger.bottom.name} (низ)`} thumbnail={burger.bottom.image} isLocked={true} price={burger.bottom.price} type={'bottom'}/>
+                <ConstructorElement extraClass={`pt-4 pb-4`} text={`${burger.bun.name} (низ)`} thumbnail={burger.bun.image} isLocked={true} price={burger.bun.price} type={'bottom'}/>
             </div>
             <div className={`${styles.order} mt-10`}>
                 <div className={`${styles.price} mr-10`}>
@@ -49,9 +49,8 @@ const BurgerConstructor = ({ burger, handleClick }) => {
 
 BurgerConstructor.propTypes = {
     burger: propTypes.shape({
-        top: propTypes.shape({...ingredientType }).isRequired,
+        bun: propTypes.shape({...ingredientType }).isRequired,
         ingredients: propTypes.arrayOf(propTypes.shape({...ingredientType })).isRequired,
-        bottom: propTypes.shape({...ingredientType }).isRequired
     }).isRequired,
     handleClick: PropTypes.func.isRequired
 
