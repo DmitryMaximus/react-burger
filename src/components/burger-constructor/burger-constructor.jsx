@@ -3,14 +3,21 @@ import {Button, ConstructorElement, CurrencyIcon, DragIcon} from "@ya.praktikum/
 import {ingredientType} from "../../utils/ingredient-type";
 import * as propTypes from "prop-types";
 import PropTypes from "prop-types";
+import {useMemo} from "react";
 
 const BurgerConstructor = ({ burger, handleClick }) => {
 
+    const getSum = useMemo(() => {
+        if (burger.bun !== null) return ()=>  {
+            return burger.bun.price + burger.bun.price + burger.ingredients.map(x => x.price).reduce((partialSum, a) => partialSum + a, 0)
+        }
+        return 0
+    }, [burger])
+
+
     if (burger == null || burger.bun == null) return null
 
-    const getSum = () => {
-        return burger.bun.price + burger.bun.price + burger.ingredients.map(x => x.price).reduce((partialSum, a) => partialSum + a, 0)
-    }
+
 
     return (
         <div className={`pt-10 ml-5 mt-25 ${styles.constructor}`}>

@@ -67,16 +67,14 @@ function App() {
 
     return (
         <div className="App">
-            {/*использовать семантические HTML5-элементы,*/}
-            {/*которые точно располагаются на главной странице:*/}
-            {/*header, nav, main, section;*/}
             <AppHeader/>
             <main className="main">
                 <section>
                     <BurgerIngredients handleClick={handleClick} data={data}/>
                 </section>
                 <section>
-                    <BurgerConstructor handleClick={handleOpenOrderInfo} burger={burger}/>
+                    {burger&&
+                    <BurgerConstructor handleClick={handleOpenOrderInfo} burger={burger}/>}
                 </section>
             </main>
             <div className='ingredient-modal'>

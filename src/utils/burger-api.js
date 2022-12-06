@@ -5,3 +5,7 @@ export function getIngredients(func) {
     return fetch(`${burgerApiUrl}/ingredients`)
         .then(checkResponse).then(result => func(result.data))
 }
+
+
+
+
