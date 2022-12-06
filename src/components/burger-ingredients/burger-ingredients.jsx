@@ -7,20 +7,18 @@ import {createRef, useEffect, useMemo, useState} from "react";
 import React from "react";
 
 
-
-const BurgerIngredients = ({ data, handleClick }) => {
+const BurgerIngredients = ({data, handleClick}) => {
 
     const types = [...new Set(data.map(x => x.type))]
 
     const parsedData = useMemo(() => {
 
-        return    types.map(x => ({
-                name: x,
-                ref: createRef(),
-                values: data.filter(z => z.type === x)
-            }))
-    }, [types,data])
-
+        return types.map(x => ({
+            name: x,
+            ref: createRef(),
+            values: data.filter(z => z.type === x)
+        }))
+    }, [types, data])
 
 
     const [activeTab, setActiveTab] = useState(null)
@@ -36,7 +34,7 @@ const BurgerIngredients = ({ data, handleClick }) => {
 
     return (
         <div className={`mr-5 pt-10 ${styles.ingredients}`}>
-            <p className= "create-burger text text_type_main-large">Соберите бургер</p>
+            <p className="create-burger text text_type_main-large">Соберите бургер</p>
             <div className={`mt-5 ${styles.burgerTextAlign}`}>
                 {
                     parsedData.map(x => x.name).map((z, index) =>
@@ -51,23 +49,15 @@ const BurgerIngredients = ({ data, handleClick }) => {
                     {
                         parsedData.map((x, index) =>
                             <div key={index} className={styles.setList}>
-                                <p ref={x.ref} className={`${styles.burgerTextAlign} text text_type_main-medium `}>{getTypeLabel(x.name)} </p>
+                                <p ref={x.ref}
+                                   className={`${styles.burgerTextAlign} text text_type_main-medium `} >{getTypeLabel(x.name)} </p>
+
                                 <div className={`${styles.items} pt-6`}>
                                     {x.values.map((i, index) =>
-                                        <div key={index}
-                                             onClick={() => handleClick(i["_id"])}
-                                             className={`${styles.item} pl-4 pr-4 mt-6 ${index % 2 === 0 ? "mr-3" : "ml-3"}`}>
-                                            <img src={i.image} alt={'ingredient'}/>
-                                            <div className={`${styles.price} mt-1 mb-1`}>
-                                                <p className={'mr-1 text text_type_digits-default'}>{i.price}</p>
-                                                <CurrencyIcon type={"primary"}/>
-                                            </div>
-                                            <p className={`${styles.name} text text_type_main-small mb-10`}>
-                                                {i.name}
-                                            </p>
-                                        </div>
+                                        <IngredientItem key={index} index={index} item={i} handleClick={handleClick}/>
                                     )}
                                 </div>
+
                             </div>
                         )
                     }
@@ -79,8 +69,34 @@ const BurgerIngredients = ({ data, handleClick }) => {
 
 }
 
+const IngredientItem = ({index, item, handleClick}) => {
+    return (
+        <div key={index}
+            onClick={() => handleClick(item["_id"])}
+            className={`${styles.item} pl-4 pr-4 mt-6 ${index % 2 === 0 ? "mr-3" : "ml-3"}`}>
+            <img src={item.image} alt={'ingredient'}/>
+            <div className={`${styles.price} mt-1 mb-1`}>
+                <p className={'mr-1 text text_type_digits-default'}>{item.price}</p>
+                <CurrencyIcon type={"primary"}/>
+            </div>
+            <p className={`${styles.name} text text_type_main-small mb-10`}>
+                {item.name}
+            </p>
+        </div>
+    )
+}
+
+
+IngredientItem.propTypes = {
+    index: PropTypes.number.isRequired,
+    handleClick: PropTypes.func.isRequired,
+    item: PropTypes.shape({...ingredientType}).isRequired
+};
+
+
 BurgerIngredients.propTypes = {
-    data: PropTypes.arrayOf(PropTypes.shape({...ingredientType
+    data: PropTypes.arrayOf(PropTypes.shape({
+        ...ingredientType
     }).isRequired).isRequired,
     handleClick: PropTypes.func.isRequired
 };
