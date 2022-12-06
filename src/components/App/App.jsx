@@ -6,6 +6,7 @@ import BurgerConstructor from "../burger-constructor/burger-constructor";
 import Modal from "../modal/modal";
 import IngredientDetails from "../modal/ingredient-details/ingredient-details";
 import OrderDetails from "../modal/order-details/order-details";
+import {getIngredients} from "../../utils/burger-api";
 
 
 function App() {
@@ -24,17 +25,7 @@ function App() {
     }, [data])
 
     useEffect(() => {
-        const getProductData = async () => {
-            await fetch('https://norma.nomoreparties.space/api/ingredients ')
-                .then(res => res.json())
-                .then(result => {
-                    setData(result.data)
-                })
-                .catch(e => {
-                    console.log(e)
-                });
-        };
-        getProductData()
+        getIngredients(setData)
     }, [])
 
     const [burger, setBurger] = useState({
