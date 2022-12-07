@@ -35,26 +35,17 @@ function App() {
 
 
     const [ingredient, setIngredient] = useState(null)
+
     const handleClick = id => {
         setIngredient(data.find(x => x["_id"] === id) || null);
     }
 
-    const handleClose = () => {
+    const handleCloseIngredient = () => {
         setIngredient(null)
     }
 
     const [orderInfo, setOrderInfo] = useState(false)
 
-    useEffect(() => {
-        function handleEscapeKey(event) {
-            if (event.code === 'Escape') {
-                handleClose();
-                handleCloseOrderInfo();
-            }
-        }
-
-        document.addEventListener('keydown', handleEscapeKey)
-    }, [])
 
     const handleOpenOrderInfo = () => {
         setOrderInfo(true)
@@ -80,7 +71,7 @@ function App() {
             <div className='ingredient-modal'>
                 {
                     ingredient &&
-                    <Modal onClose={handleClose} header={'Детали ингредиента'}>
+                    <Modal onClose={handleCloseIngredient} header={'Детали ингредиента'}>
                         <IngredientDetails item={ingredient}/>
                     </Modal>
                 }
