@@ -90,14 +90,12 @@ const IngredientItem = ({index, item, handleClick}) => {
 IngredientItem.propTypes = {
     index: PropTypes.number.isRequired,
     handleClick: PropTypes.func.isRequired,
-    item: PropTypes.shape({...ingredientType}).isRequired
+    item: ingredientType.isRequired
 };
 
 
 BurgerIngredients.propTypes = {
-    data: PropTypes.arrayOf(PropTypes.shape({
-        ...ingredientType
-    }).isRequired).isRequired,
+    data: PropTypes.arrayOf(ingredientType.isRequired).isRequired,
     handleClick: PropTypes.func.isRequired
 };
 

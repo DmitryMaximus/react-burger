@@ -1,5 +1,4 @@
 import styles from './ingredient-details.module.css'
-import PropTypes from "prop-types";
 import {ingredientType} from "../../../utils/ingredient-type";
 
 const IngredientDetails = ({ item }) => {
@@ -32,7 +31,7 @@ const IngredientDetails = ({ item }) => {
 }
 
 IngredientDetails.propTypes = {
-    item: PropTypes.shape({...ingredientType}).isRequired
+    item: ingredientType.isRequired
 };
 
 export default IngredientDetails;

@@ -1,8 +1,8 @@
 import {checkResponse} from "./check-response";
-import {burgerApiUrl} from "./api-url";
+import {BURGER_API_URL} from "./api-url";
 
 export function getIngredients(func) {
-    return fetch(`${burgerApiUrl}/ingredients`)
+    return fetch(`${BURGER_API_URL}/ingredients`)
         .then(checkResponse).then(result => func(result.data))
 }
 

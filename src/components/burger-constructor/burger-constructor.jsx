@@ -56,8 +56,8 @@ const BurgerConstructor = ({ burger, handleClick }) => {
 
 BurgerConstructor.propTypes = {
     burger: propTypes.shape({
-        bun: propTypes.shape({...ingredientType }).isRequired,
-        ingredients: propTypes.arrayOf(propTypes.shape({...ingredientType })).isRequired,
+        bun: ingredientType.isRequired,
+        ingredients: propTypes.arrayOf(ingredientType.isRequired).isRequired,
     }).isRequired,
     handleClick: PropTypes.func.isRequired
 
