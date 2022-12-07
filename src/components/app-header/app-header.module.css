@@ -1,0 +1,27 @@
+.header {
+    background-color: #2f2f37;
+}
+
+.headerWrapper {
+    width: 1240px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.active {
+    color: white;
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+}
+
+.inActive {
+    color: #8585AD;
+}
+
+.nav {
+    display: flex;
+    align-items: center;
+}

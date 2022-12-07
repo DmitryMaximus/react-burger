@@ -1,0 +1,44 @@
+.constructor {
+    width: 600px;
+}
+
+.hiddenDrag {
+    opacity: 0;
+}
+
+.item {
+    display: flex;
+    align-items: center;
+}
+
+
+.ingredients {
+    height: 480px;
+    overflow: scroll;
+    overflow-x: hidden;
+}
+
+.ingredients::-webkit-scrollbar {
+    width: 8px;
+}
+
+.ingredients::-webkit-scrollbar-track {
+    background-color: #2F2F37;
+}
+
+.ingredients::-webkit-scrollbar-thumb {
+    background-color: #8585AD;
+}
+
+.price {
+    display: flex;
+    align-items: center;
+}
+
+
+.order {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+}
+
