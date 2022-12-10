@@ -7,6 +7,7 @@ import Modal from "../modal/modal";
 import IngredientDetails from "../modal/ingredient-details/ingredient-details";
 import OrderDetails from "../modal/order-details/order-details";
 import {getIngredients} from "../../utils/burger-api";
+import {OrderNumContext} from "../../services/appContext";
 
 
 function App() {
@@ -45,7 +46,7 @@ function App() {
     }
 
     const [orderInfo, setOrderInfo] = useState(false)
-
+    const [orderNum, setOrderNum] = useState(null)
 
     const handleOpenOrderInfo = () => {
         setOrderInfo(true)
@@ -55,7 +56,6 @@ function App() {
         setOrderInfo(false)
     }
 
-
     return (
         <div className="App">
             <AppHeader/>
@@ -64,8 +64,13 @@ function App() {
                     <BurgerIngredients handleClick={handleClick} data={data}/>
                 </section>
                 <section>
-                    {burger&&
-                    <BurgerConstructor handleClick={handleOpenOrderInfo} burger={burger}/>}
+
+                    {burger.bun &&
+                        <OrderNumContext.Provider value={{orderNum, setOrderNum}}>
+                            <BurgerConstructor handleClick={handleOpenOrderInfo} burger={burger}/>
+                        </OrderNumContext.Provider>
+                    }
+
                 </section>
             </main>
             <div className='ingredient-modal'>
@@ -78,9 +83,11 @@ function App() {
             </div>
             <div className='order-modal'>
                 {
-                    orderInfo &&
+                    orderNum &&
                     <Modal onClose={handleCloseOrderInfo} header={''}>
-                        <OrderDetails/>
+                        <OrderNumContext.Provider value={{orderNum}}>
+                            <OrderDetails/>
+                        </ OrderNumContext.Provider>
                     </Modal>
 
                 }
