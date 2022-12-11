@@ -54,6 +54,8 @@ function App() {
 
     const handleCloseOrderInfo = () => {
         setOrderInfo(false)
+        setOrderNum(null)
+
     }
 
     return (
@@ -82,15 +84,16 @@ function App() {
                 }
             </div>
             <div className='order-modal'>
-                {
-                    orderNum &&
-                    <Modal onClose={handleCloseOrderInfo} header={''}>
-                        <OrderNumContext.Provider value={{orderNum}}>
+                <OrderNumContext.Provider value={{orderNum}}>
+                    {
+                        orderNum &&
+                        <Modal onClose={handleCloseOrderInfo} header={''}>
                             <OrderDetails/>
-                        </ OrderNumContext.Provider>
-                    </Modal>
+                        </Modal>
 
-                }
+                    }
+                </ OrderNumContext.Provider>
+
             </div>
         </div>
     );

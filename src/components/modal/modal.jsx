@@ -6,7 +6,6 @@ import {CloseIcon} from "@ya.praktikum/react-developer-burger-ui-components";
 import PropTypes from "prop-types";
 
 const Modal = ({children, header, onClose}) => {
-
     useEffect(() => {
         function handleEscapeKey(event) {
             if (event.code === 'Escape') {

@@ -3,7 +3,7 @@ import {Button, ConstructorElement, CurrencyIcon, DragIcon} from "@ya.praktikum/
 import {ingredientType} from "../../utils/ingredient-type";
 import * as propTypes from "prop-types";
 import PropTypes from "prop-types";
-import {useContext, useMemo} from "react";
+import React, {useContext, useMemo} from "react";
 import {OrderNumContext} from "../../services/appContext";
 import {getOrder} from "../../utils/burger-api";
 

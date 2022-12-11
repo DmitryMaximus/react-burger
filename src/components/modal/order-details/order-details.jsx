@@ -1,12 +1,12 @@
 import styles from './order-details.module.css'
 import {CheckMarkIcon} from "@ya.praktikum/react-developer-burger-ui-components";
 import image from '../../../images/tick.png'
-import {useContext} from "react";
+import React, {useContext} from "react";
 import {OrderNumContext} from "../../../services/appContext";
+
 
 const OrderDetails = () => {
     const {orderNum}  = useContext(OrderNumContext)
-    console.log(orderNum)
     return (
         <div>
             <p className={`text text_type_digits-large ${styles.number}`}>{orderNum}</p>
