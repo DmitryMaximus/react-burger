@@ -1,3 +1,6 @@
+
+Walk through https://www.notion.so/REACT-e9a924cd20474e35a4d34c19b87147c6
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
